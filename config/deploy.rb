@@ -8,8 +8,8 @@ set :use_sudo, false
 set :branch, "swindon"
 default_run_options[:pty] = true
 
-role :app, "eilp.swindon-college.ac.uk", "leap.southdevon.ac.uk"
-role :web, "eilp.swindon-college.ac.uk", "leap.southdevon.ac.uk"
+role :app, "eilp.swindon-college.ac.uk"
+role :web, "eilp.swindon-college.ac.uk"
 
 namespace :deploy do
   task :start do ; end
