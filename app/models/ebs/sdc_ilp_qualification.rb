@@ -14,32 +14,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Leap.  If not, see <http://www.gnu.org/licenses/>.
 
-class ReviewLine < Eventable
+class Ebs::SdcIlpQualification < Ebs::Model
 
-  attr_accessible :body, :quality, :attitude, :punctuality, :completion, :window, :unit, :review_id
-
-  belongs_to :review
-
-  after_create do |line|
-    line.review = Review.find_or_create_by_person_id_and_window(person_id, window) unless window.blank?
-    line.save
-    line.events.create!(:event_date => created_at, :transition => :create, :parent_id => review && review.events.creation.first.id)
-  end
-
-  def title
-    window or "Initial Review"
-  end
-
-  def extra_panes
-    [["Edit","events/tabs/review_line"]] if Person.user.staff? and status.to_s == "current"
-  end
-
-  def status
-    review ? review.status : :complete
-  end
-
-  def staff_only?
-    review ? review.staff_only? : true
-  end
+  belongs_to :person
+  belongs_to :unit_instance_occurrence, :foreign_key => "uio_id"
 
 end
