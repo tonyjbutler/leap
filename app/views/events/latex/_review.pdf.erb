@@ -69,13 +69,13 @@
     <%= lesc rl.created_by.name%>
     \medskip
   \end{minipage}
-  &<%= rl.quality %>&<%= rl.punctuality %>&<%= rl.attitude %>&<%= rl.completion %>
+  &<%= rl.quality + 1 %>&<%= rl.punctuality + 1 %>&<%= rl.attitude + 1 %>&<%= rl.completion + 1 %>
   &<%= lesc rl.body %>\tabularnewline
   \hline
 <% end %>
 \end{longtable}
 
-\noindent Key: 10 = Excellent; 8 = Good; 6 = Satisfactory; 4 = Needs improvement; 2 = Poor 
+\noindent Key: 1 = Inadequate, 2 = Requires improvement, 3 = Good, 4 = Outstanding
 
 
 <%# if @topic.attendances.last.siblings_same_year %>
